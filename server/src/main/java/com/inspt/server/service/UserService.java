@@ -2,8 +2,10 @@ package com.inspt.server.service;
 
 import com.inspt.server.dto.UserRequest;
 import com.inspt.server.dto.UserResponse;
+import com.inspt.server.dto.VehicleResponse;
 import com.inspt.server.model.Role;
 import com.inspt.server.model.User;
+import com.inspt.server.model.Vehicle;
 import com.inspt.server.repository.RoleRepository;
 import com.inspt.server.repository.UserRepository;
 import com.inspt.server.service.iservice.IUserService;
@@ -22,6 +24,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -56,6 +60,28 @@ public class UserService implements UserDetailsService, IUserService {
         } catch (Exception e) {
             throw new UsernameNotFoundException("userNotFoundMsg");
         }
+    }
+
+    public List<UserResponse> getListUser(){
+        List<User> userList = userRepository.findAll();
+        List<UserResponse> userResponseList = new ArrayList<>();
+
+        userResponseList = userList.stream().map(new Function<User, UserResponse>() {
+            @Override
+            public UserResponse apply(User u){
+
+                return new UserResponse(
+                u.getUsername(),
+                u.getDni(),
+                u.getEmail(),
+                u.getPhone(),
+                u.getName(),
+                u.getLastName()
+                );
+            }
+        }).collect(Collectors.toList());
+        return userResponseList;
+
     }
 
     public User mapUserRequestToUser (UserRequest userRequest){
