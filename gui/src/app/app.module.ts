@@ -11,6 +11,7 @@ import { ListEmpleadoComponent } from './components/list-empleado/list-empleado.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MensajeConfirmacionComponent } from './components/shared/mensaje-confirmacion/mensaje-confirmacion.component';
 import { AngularMaterialModule } from './components/shared/angular-material/angular-material.module';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AngularMaterialModule } from './components/shared/angular-material/angu
     AddEditEmpleadoComponent,
     ListEmpleadoComponent,
     NavbarComponent,
-    MensajeConfirmacionComponent
+    MensajeConfirmacionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
