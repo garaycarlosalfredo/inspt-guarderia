@@ -24,7 +24,7 @@ export class AuthService{
                 this.router.navigate(['/empleados'])
             },
             error=>{
-                //console.log(error);  
+                console.log(error);  
                 this.router.navigate(['/'])              
             }
             

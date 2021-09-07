@@ -1,5 +1,6 @@
 package com.inspt.server.service;
 
+import com.inspt.server.dto.MessageResponse;
 import com.inspt.server.dto.UserRequest;
 import com.inspt.server.dto.UserResponse;
 import com.inspt.server.dto.VehicleResponse;
@@ -11,6 +12,8 @@ import com.inspt.server.repository.UserRepository;
 import com.inspt.server.service.iservice.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -40,13 +44,23 @@ public class UserService implements UserDetailsService, IUserService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private MessageSource messageSource;
+
     public ResponseEntity<?> signUp(UserRequest userRequest) {
         try {
             userRepository.save(mapUserRequestToUser(userRequest));
             return ResponseEntity.ok(mapUserRequestToUserResponse(userRequest));
+        }catch (DataIntegrityViolationException e) {
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new MessageResponse(messageSource.getMessage("auth.entity.duplicated", new Object[] { "User"}, Locale.US))
+            );
         }catch (Exception e){
             System.out.println(e);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("MENSAJE");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new MessageResponse(messageSource.getMessage("auth.entity.internal-error", new Object[] { "User"}, Locale.US))
+            );
         }
     }
 
@@ -58,7 +72,9 @@ public class UserService implements UserDetailsService, IUserService {
         try {
             return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), authorities);
         } catch (Exception e) {
-            throw new UsernameNotFoundException("userNotFoundMsg");
+            throw new UsernameNotFoundException(
+                    messageSource.getMessage("auth.entity.not-found", new Object[] { "User"}, Locale.US)
+            );
         }
     }
 
