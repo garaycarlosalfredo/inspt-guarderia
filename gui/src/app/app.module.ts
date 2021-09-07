@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,11 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Angular Material
 import { AddEditEmpleadoComponent } from './components/add-edit-empleado/add-edit-empleado.component';
-import { ListEmpleadoComponent } from './components/list-empleado/list-empleado.component';
+import { ListEmpleadoComponent } from './components/user/empleado/list-empleado/list-empleado.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MensajeConfirmacionComponent } from './components/shared/mensaje-confirmacion/mensaje-confirmacion.component';
 import { AngularMaterialModule } from './components/shared/angular-material/angular-material.module';
 import { LoginComponent } from './components/login/login.component';
+import { EmpleadoComponent } from './components/user/empleado/empleado.component';
+import { FormComponent } from './components/login/form/form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { LoginComponent } from './components/login/login.component';
     ListEmpleadoComponent,
     NavbarComponent,
     MensajeConfirmacionComponent,
-    LoginComponent
+    LoginComponent,
+    EmpleadoComponent,
+    FormComponent
   ],
   imports: [
     HttpClientModule,
@@ -31,7 +36,7 @@ import { LoginComponent } from './components/login/login.component';
     BrowserAnimationsModule,
     AngularMaterialModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { EmpleadoService } from './../../service/empleado.service';
+import { EmpleadoService } from '../../../../service/empleado.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';

@@ -1,4 +1,4 @@
-import { ListEmpleadoComponent } from './../components/list-empleado/list-empleado.component';
+import { ListEmpleadoComponent } from '../components/user/empleado/list-empleado/list-empleado.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { Empleado } from './../models/empleado';
 import { Injectable } from '@angular/core';

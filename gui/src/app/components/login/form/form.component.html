@@ -1,0 +1,49 @@
+<div class="containerForm">
+    <div class="loginForm">
+      <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Ingresar</mat-card-title>
+            <mat-card-subtitle>Si ya tenés una cuenta</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://revista.une.org/images/revistas/articulos/6d79cba317806322d67de738541adbdb.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+  
+  
+            <div class="box">    
+  
+              <form class="item" #f="ngForm" (ngSubmit)="f.form.valid && login(f)">
+                  <mat-form-field appearance="fill">
+                      <mat-label>usuario</mat-label>
+                          <input name="userName" ngModel required  matInput placeholder="Placeholder">
+                          <mat-icon matSuffix>account_circle</mat-icon>
+                          <!--
+                          <mat-hint>Bienvenido</mat-hint>
+                          -->
+                      </mat-form-field>                      
+                  
+                      <mat-form-field appearance="fill">
+                          <mat-label>password</mat-label>
+                          <input name="password" ngModel required matInput [type]="hide ? 'password' : 'text'">
+                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                      </mat-form-field>  
+
+                      <p>
+                        <button type="submit" mat-stroked-button color="primary">Ingresar</button>
+                      </p>          
+              </form>          
+          </div>
+  
+  
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>No recuerdo mis datos</button>
+            <button mat-button>Crear Cuenta</button>
+          </mat-card-actions>
+      </mat-card>
+  
+    </div>
+  </div>
+  

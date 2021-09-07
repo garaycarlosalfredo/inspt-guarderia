@@ -11,7 +11,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [],
   imports: [
@@ -25,6 +25,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatSortModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule
   ],
   exports:[
     MatSliderModule,
@@ -35,7 +36,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class AngularMaterialModule { }
