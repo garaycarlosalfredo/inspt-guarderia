@@ -1,5 +1,6 @@
-import { Empleado } from './../models/empleado';
+
 import { Injectable } from '@angular/core';
+import { Empleado } from 'src/app/models/empleado';
 
 @Injectable({
   providedIn: 'root'

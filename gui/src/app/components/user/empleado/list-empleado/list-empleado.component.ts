@@ -1,9 +1,10 @@
-import { EmpleadoService } from '../../../../service/empleado.service';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Empleado } from 'src/app/models/empleado';
+import { EmpleadoService } from 'src/app/service/user/empleado/empleado.service';
 
 @Component({
   selector: 'app-list-empleado',
