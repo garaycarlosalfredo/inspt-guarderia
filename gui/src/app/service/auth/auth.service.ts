@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
     providedIn: 'root'
   })
 export class AuthService{
-    token !: {};
+    token !: String;
     urlAuth = environment.BASE_URL + "/auth/sign-in";
 
     constructor(private httpClient : HttpClient,
@@ -18,14 +18,13 @@ export class AuthService{
 
     login(userName: String, password: String){
         const AuthenticationRequest = {userName,password}
-        this.httpClient.post(`${this.urlAuth}`,AuthenticationRequest).subscribe(            
+        this.httpClient.post<{jwt : String}>(`${this.urlAuth}`,AuthenticationRequest).subscribe(            
             res=> {
-                this.token = res
-                console.log(res)
+                this.token = res.jwt
                 this.router.navigate(['/empleados'])
             },
             error=>{
-                console.log(error);  
+                //console.log(error);  
                 this.router.navigate(['/'])              
             }
             

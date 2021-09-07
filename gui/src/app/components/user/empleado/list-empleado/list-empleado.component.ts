@@ -38,8 +38,8 @@ export class ListEmpleadoComponent implements OnInit {
   }
 
   cargarEmpleados(){
-    this.listEmpleado = this.empleadoService.getEmpleados();
+    this.empleadoService.getListaEmpleados();
     this.dataSource = new MatTableDataSource<Empleado>(this.listEmpleado);
-    console.log(this.listEmpleado)
+    console.log("Lista " + this.listEmpleado)
   }
 }
