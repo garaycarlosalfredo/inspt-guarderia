@@ -1,10 +1,11 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Empleado } from 'src/app/models/empleado';
+import { Usuario } from 'src/app/models/usuario';
 import { EmpleadoService } from 'src/app/service/user/empleado/empleado.service';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-empleado',
@@ -14,22 +15,24 @@ import { EmpleadoService } from 'src/app/service/user/empleado/empleado.service'
 export class ListEmpleadoComponent implements OnInit {
 
   displayedColumns: string[] = ['Nombre','Apellido', 'Dni', 'Email'];
-  dataSource = new MatTableDataSource<Empleado>();
-  listEmpleado !: Empleado[];
+  dataSource = new MatTableDataSource<Usuario>();
+  empleados !: Usuario[];
 
   
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-    this.cargarEmpleados();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  constructor (private empleadoService : EmpleadoService) { }
+  constructor (private empleadoService : EmpleadoService,
+               private router : Router
+    ) { }
 
   ngOnInit(): void {
+    this.cargarEmpleados();
   }
 
   applyFilter(event: Event) {
@@ -38,8 +41,14 @@ export class ListEmpleadoComponent implements OnInit {
   }
 
   cargarEmpleados(){
-    this.empleadoService.getListaEmpleados();
-    this.dataSource = new MatTableDataSource<Empleado>(this.listEmpleado);
-    console.log("Lista " + this.listEmpleado)
-  }
+    this.empleadoService.getListaEmpleados().pipe(first()).subscribe(
+      empleados => {
+        this.empleados = empleados
+        this.dataSource = new MatTableDataSource<Usuario>(this.empleados);
+      },error=>{
+        //this.router.navigate(['/'])
+        console.log(error)
+      }
+    )
+  } 
 }
