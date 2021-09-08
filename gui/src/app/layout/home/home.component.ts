@@ -19,5 +19,4 @@ export class HomeComponent implements OnInit {
       this.usuarioActual = res
     });
   }
-
 }

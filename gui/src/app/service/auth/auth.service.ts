@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
   })
 export class AuthService{
-    token !: {jwt : any};
+    currentUser !: Usuario;
     urlAuth = environment.BASE_URL + "/auth/sign-in";
     urlCurrentUser = environment.BASE_URL + "/auth/me";
     
@@ -23,11 +23,18 @@ export class AuthService{
 
     login(userName: String, password: String){
         const AuthenticationRequest = {userName,password}
-        this.httpClient.post<{jwt : String}>(`${this.urlAuth}`,AuthenticationRequest).subscribe(            
-            res=> {
-                //this.token = res.jwt         
-                localStorage.setItem('ActualUser', res.jwt.toString())
-                this.router.navigate(['/home'])
+        this.httpClient.post<Usuario>(`${this.urlAuth}`,AuthenticationRequest).subscribe(            
+            res=> { 
+                this.currentUser = res; 
+                localStorage.setItem('ActualUser', JSON.stringify(this.currentUser));
+
+                var urlIndex = "";
+
+                if(res.role == 'ROLE_ADMIN'){urlIndex = "/administrador"};
+                if(res.role == 'ROLE_PARTNER'){urlIndex = "/socio"};
+                if(res.role == 'ROLE_EMPLOYEE'){urlIndex = "/empleado"};
+
+                this.router.navigate([urlIndex])
             },
             error=>{
                 console.log(error);  
@@ -38,16 +45,16 @@ export class AuthService{
     }
 
     getActualUser(){
-        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('ActualUser'));
+        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.getToken());
         return this.httpClient.get<Usuario>(`${this.urlCurrentUser}`, {headers})
     }
 
     getToken(){
         //return this.token
-        var tok = localStorage.getItem('ActualUser')
-
-        if(tok != null){       
-            return tok;
+        var usuario = JSON.parse(localStorage['ActualUser'])
+        var token = usuario['jwt']
+        if(token != null){    
+            return token;
         }else{
             console.log("Error en Get token")
             return "";

@@ -1,6 +1,8 @@
 package com.inspt.server.service;
 
 import com.inspt.server.dto.*;
+import com.inspt.server.model.User;
+import com.inspt.server.repository.UserRepository;
 import com.inspt.server.service.iservice.IAuthService;
 import com.inspt.server.util.JwtUtil;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +23,9 @@ public class AuthService implements IAuthService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -37,7 +43,15 @@ public class AuthService implements IAuthService {
     public ResponseEntity<?> SignIn(AuthenticationRequest authenticationRequest){
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(), authenticationRequest.getPassword()));
-            return ResponseEntity.ok().body(new AuthenticationResponse(jwtUtil.generateToken(userService.loadUserByUsername(authenticationRequest.getUserName()))));
+
+
+
+            return ResponseEntity.ok().body(
+                    new AuthenticationResponse(
+                            jwtUtil.generateToken(userService.loadUserByUsername(authenticationRequest.getUserName())),
+                            getUserByUserNameAuthResponse(authenticationRequest.getUserName())
+                    )
+            );
         }catch (Exception e){
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
@@ -48,5 +62,14 @@ public class AuthService implements IAuthService {
 
     public ResponseEntity<?> findMyUser(String userName){
         return userService.getUserByUserName(userName);
+    }
+
+    private User getUserByUserNameAuthResponse(String userName){
+        Optional<User> user = userRepository.findByUserName(userName);
+        if(user.isEmpty()){
+            return null;
+        }else {
+            return user.get();
+        }
     }
 }

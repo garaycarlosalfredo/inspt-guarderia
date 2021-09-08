@@ -18,6 +18,9 @@ import { EmpleadoComponent } from './components/user/empleado/empleado.component
 import { FormComponent } from './components/login/form/form.component';
 import { HomeComponent } from './layout/home/home.component';
 import { AddUserComponent } from './components/user/administrador/add-user/add-user.component';
+import { AdministradorComponent } from './components/user/administrador/administrador.component';
+import { SocioComponent } from './components/user/socio/socio.component';
+import { UserComponent } from './components/navbar/user/user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { AddUserComponent } from './components/user/administrador/add-user/add-u
     FormComponent,
     AddUserComponent,
     HomeComponent,
+    AdministradorComponent,
+    SocioComponent,
+    UserComponent,
   ],
   imports: [
     HttpClientModule,
