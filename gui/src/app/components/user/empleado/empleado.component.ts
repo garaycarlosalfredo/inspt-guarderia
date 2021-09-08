@@ -8,12 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpleadoComponent implements OnInit {
 
-  token!:{};
 
-  constructor(private authService : AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.token = this.authService.getToken()
   }
 
 }
