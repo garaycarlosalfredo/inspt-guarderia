@@ -2,8 +2,8 @@ package com.inspt.server.service;
 
 import com.inspt.server.dto.MessageResponse;
 import com.inspt.server.dto.UserRequest;
-import com.inspt.server.security.AuthenticationRequest;
-import com.inspt.server.security.AuthenticationResponse;
+import com.inspt.server.dto.AuthenticationRequest;
+import com.inspt.server.dto.AuthenticationResponse;
 import com.inspt.server.service.iservice.IAuthService;
 import com.inspt.server.util.JwtUtil;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.inspt.server.controller;
 
 import com.inspt.server.dto.UserRequest;
-import com.inspt.server.security.AuthenticationRequest;
+import com.inspt.server.dto.AuthenticationRequest;
 import com.inspt.server.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

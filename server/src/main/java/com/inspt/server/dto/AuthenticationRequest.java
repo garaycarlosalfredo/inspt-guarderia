@@ -1,4 +1,4 @@
-package com.inspt.server.security;
+package com.inspt.server.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.inspt.server.security;
+package com.inspt.server.dto;
 
 public class AuthenticationResponse {
     private final String jwt;
