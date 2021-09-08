@@ -16,6 +16,7 @@ import { AngularMaterialModule } from './components/shared/angular-material/angu
 import { LoginComponent } from './components/login/login.component';
 import { EmpleadoComponent } from './components/user/empleado/empleado.component';
 import { FormComponent } from './components/login/form/form.component';
+import { AddUserComponent } from './components/user/administrador/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormComponent } from './components/login/form/form.component';
     MensajeConfirmacionComponent,
     LoginComponent,
     EmpleadoComponent,
-    FormComponent
+    FormComponent,
+    AddUserComponent,
   ],
   imports: [
     HttpClientModule,
