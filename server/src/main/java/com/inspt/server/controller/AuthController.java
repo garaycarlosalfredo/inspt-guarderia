@@ -31,7 +31,7 @@ public class AuthController {
 
     @GetMapping(value = "/me")
     public ResponseEntity<?> getMyUser(Authentication authentication, Principal principal) {
-            return ResponseEntity.ok(authService.findMyUser(authentication.getName()));
+            return authService.findMyUser(authentication.getName());
     }
 
     //TEST ==========================

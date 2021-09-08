@@ -1,9 +1,11 @@
+import { first } from 'rxjs/operators';
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { Token } from '@angular/compiler/src/ml_parser/lexer';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -12,6 +14,7 @@ import { Token } from '@angular/compiler/src/ml_parser/lexer';
 export class AuthService{
     token !: {jwt : any};
     urlAuth = environment.BASE_URL + "/auth/sign-in";
+    urlCurrentUser = environment.BASE_URL + "/auth/me";
     
     constructor(private httpClient : HttpClient,
                 private router : Router
@@ -24,7 +27,7 @@ export class AuthService{
             res=> {
                 //this.token = res.jwt         
                 localStorage.setItem('ActualUser', res.jwt.toString())
-                this.router.navigate(['/empleados'])
+                this.router.navigate(['/home'])
             },
             error=>{
                 console.log(error);  
@@ -34,10 +37,14 @@ export class AuthService{
         )
     }
 
+    getActualUser(){
+        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('ActualUser'));
+        return this.httpClient.get<Usuario>(`${this.urlCurrentUser}`, {headers})
+    }
+
     getToken(){
         //return this.token
         var tok = localStorage.getItem('ActualUser')
-        console.log(tok)
 
         if(tok != null){       
             return tok;

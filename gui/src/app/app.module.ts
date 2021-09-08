@@ -16,6 +16,7 @@ import { AngularMaterialModule } from './components/shared/angular-material/angu
 import { LoginComponent } from './components/login/login.component';
 import { EmpleadoComponent } from './components/user/empleado/empleado.component';
 import { FormComponent } from './components/login/form/form.component';
+import { HomeComponent } from './layout/home/home.component';
 import { AddUserComponent } from './components/user/administrador/add-user/add-user.component';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AddUserComponent } from './components/user/administrador/add-user/add-u
     EmpleadoComponent,
     FormComponent,
     AddUserComponent,
+    HomeComponent,
   ],
   imports: [
     HttpClientModule,
