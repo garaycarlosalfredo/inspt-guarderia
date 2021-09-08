@@ -53,13 +53,30 @@ public class UserService implements UserDetailsService, IUserService {
             return ResponseEntity.ok(mapUserRequestToUserResponse(userRequest));
         }catch (DataIntegrityViolationException e) {
             System.out.println(e);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(
                     new MessageResponse(messageSource.getMessage("auth.entity.duplicated", new Object[] { "User"}, Locale.US))
             );
         }catch (Exception e){
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                     new MessageResponse(messageSource.getMessage("auth.entity.internal-error", new Object[] { "User"}, Locale.US))
+            );
+        }
+    }
+
+    public ResponseEntity<?> getUserByUserName(String userName) {
+        Optional<User> user = userRepository.findByUserName(userName);
+        try {
+            if(user.isEmpty()){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new MessageResponse(messageSource.getMessage("auth.entity.not-found", new Object[] { "User"}, Locale.US))
+            );
+            }else {
+                return ResponseEntity.ok().body(mapUserToUserResponse(user.get()));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new MessageResponse(messageSource.getMessage("auth.entity.internal-error", new Object[]{"User"}, Locale.US))
             );
         }
     }

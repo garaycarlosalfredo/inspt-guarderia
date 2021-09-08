@@ -5,8 +5,12 @@ import com.inspt.server.dto.AuthenticationRequest;
 import com.inspt.server.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -23,6 +27,11 @@ public class AuthController {
     @PostMapping(path = "/sign-in")
     public  ResponseEntity<?> userSignIn (@RequestBody AuthenticationRequest authenticationRequest){
         return authService.SignIn(authenticationRequest);
+    }
+
+    @GetMapping(value = "/me")
+    public ResponseEntity<?> getMyUser(Authentication authentication, Principal principal) {
+            return ResponseEntity.ok(authService.findMyUser(authentication.getName()));
     }
 
     //TEST ==========================

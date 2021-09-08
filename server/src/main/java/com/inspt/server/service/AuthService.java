@@ -1,9 +1,6 @@
 package com.inspt.server.service;
 
-import com.inspt.server.dto.MessageResponse;
-import com.inspt.server.dto.UserRequest;
-import com.inspt.server.dto.AuthenticationRequest;
-import com.inspt.server.dto.AuthenticationResponse;
+import com.inspt.server.dto.*;
 import com.inspt.server.service.iservice.IAuthService;
 import com.inspt.server.util.JwtUtil;
 import lombok.AllArgsConstructor;
@@ -47,5 +44,9 @@ public class AuthService implements IAuthService {
                  new MessageResponse(messageSource.getMessage("auth.entity.not-found", new Object[] { "User"}, Locale.US))
             );
         }
+    }
+
+    public ResponseEntity<?> findMyUser(String userName){
+        return userService.getUserByUserName(userName);
     }
 }
