@@ -1,0 +1,63 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+  
+  .mat-form-field{
+    margin: 5px;
+  }
+  
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://www.manners.nl/wp-content/uploads/2020/02/5-4.jpg');
+    background-size: cover;
+  }
+  
+  .mat-card-image-div{
+    padding: 10px;
+    border-radius: 20px 20px ;
+  }
+  .mat-card-image{
+    border-radius: 20px 20px ;
+  }
+  
+  .mat-card-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loginForm{
+    text-align: center;
+  }
+  
+  .containerForm{
+    background-color: dimgray;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

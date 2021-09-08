@@ -12,6 +12,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -25,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatSortModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ],
   exports:[
     MatSliderModule,
@@ -37,7 +40,8 @@ import {MatCardModule} from '@angular/material/card';
     MatSortModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule
   ]
 })
 export class AngularMaterialModule { }

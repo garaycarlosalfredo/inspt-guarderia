@@ -17,10 +17,14 @@ import { LoginComponent } from './components/login/login.component';
 import { EmpleadoComponent } from './components/user/empleado/empleado.component';
 import { FormComponent } from './components/login/form/form.component';
 import { HomeComponent } from './layout/home/home.component';
-import { AddUserComponent } from './components/user/administrador/add-user/add-user.component';
 import { AdministradorComponent } from './components/user/administrador/administrador.component';
 import { SocioComponent } from './components/user/socio/socio.component';
-import { UserComponent } from './components/navbar/user/user.component';
+import { UserToolBarComponent } from './components/toolbar/user-tool-bar/user-tool-bar.component';
+import { EmployeeToolBarComponent } from './components/toolbar/employee-tool-bar/employee-tool-bar.component';
+import { AdminToolBarComponent } from './components/toolbar/admin-tool-bar/admin-tool-bar.component';
+import { PartnerToolBarComponent } from './components/toolbar/partner-tool-bar/partner-tool-bar.component';
+import { AddUserFormComponent } from './components/user/administrador/add-user-form/add-user-form.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -32,11 +36,14 @@ import { UserComponent } from './components/navbar/user/user.component';
     LoginComponent,
     EmpleadoComponent,
     FormComponent,
-    AddUserComponent,
     HomeComponent,
     AdministradorComponent,
     SocioComponent,
-    UserComponent,
+    UserToolBarComponent,
+    EmployeeToolBarComponent,
+    AdminToolBarComponent,
+    PartnerToolBarComponent,
+    AddUserFormComponent,
   ],
   imports: [
     HttpClientModule,
@@ -44,7 +51,8 @@ import { UserComponent } from './components/navbar/user/user.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    MatSelectModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

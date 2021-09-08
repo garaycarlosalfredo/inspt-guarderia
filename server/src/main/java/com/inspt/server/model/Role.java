@@ -21,5 +21,5 @@ public class Role {
     private String name;
 
     @Nullable
-    private String Description;
+    private String description;
 }

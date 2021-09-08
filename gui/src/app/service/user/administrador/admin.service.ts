@@ -1,23 +1,22 @@
-
-import { AuthService } from 'src/app/service/auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Role } from 'src/app/models/role';
 import { environment } from 'src/environments/environment';
-import { Usuario } from 'src/app/models/usuario';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmpleadoService {
-  urlEmpleados = environment.BASE_URL + "/user";
+export class AdminService {
+
+  urlRoles = environment.BASE_URL + "/role";
 
   constructor(private httpClient : HttpClient,
               private authService : AuthService
     ) {}
 
-   getListaEmpleados(){   
-     console.log('Bearer ' + this.authService.getToken()) 
+   getRolesList(){   
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.httpClient.get<Usuario[]>(`${this.urlEmpleados}`, {headers})
+    return this.httpClient.get<Role[]>(`${this.urlRoles}`, {headers})
   }
 }
