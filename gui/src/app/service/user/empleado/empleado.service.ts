@@ -16,7 +16,7 @@ export class EmpleadoService {
     ) {}
 
    getListaEmpleados(){   
-     console.log('Bearer ' + this.authService.getToken()) 
+    // console.log('Bearer ' + this.authService.getToken()) 
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken());
     return this.httpClient.get<Usuario[]>(`${this.urlEmpleados}`, {headers})
   }

@@ -1,3 +1,4 @@
+import { Role } from 'src/app/models/role';
 import { first } from 'rxjs/operators';
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -14,12 +15,12 @@ import { Observable } from 'rxjs';
 export class AuthService{
     currentUser !: Usuario;
     urlAuth = environment.BASE_URL + "/auth/sign-in";
-    urlCurrentUser = environment.BASE_URL + "/auth/me";
-    
+    urlCurrentUser = environment.BASE_URL + "/auth/me";    
+    urlAuthSignUp = environment.BASE_URL + "/auth/sign-up";
+
     constructor(private httpClient : HttpClient,
                 private router : Router
         ){ }
-
 
     login(userName: String, password: String){
         const AuthenticationRequest = {userName,password}
