@@ -1,85 +1,111 @@
-<div class="containerForm">
-  <div class="loginForm">
-    <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Ingresar</mat-card-title>
-          <mat-card-subtitle>Si ya tenés una cuenta</mat-card-subtitle>
-        </mat-card-header>
+<div>
+  <button mat-raised-button (click)="isEditable = !isEditable">
+    {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+  </button>
+  <!--STEP 1-->
+  <mat-stepper linear #stepper >
+    <mat-step [stepControl]="loginFormGroup" [editable]="isEditable">
+      <form [formGroup]="loginFormGroup">
+        <ng-template matStepLabel>Datos de ingreso</ng-template>
 
-        <div class="mat-card-image-div"> 
-          <img class="mat-card-image" mat-card-image src="https://media.istockphoto.com/vectors/parking-place-with-one-car-and-ticket-machine-vector-id693771276?b=1&k=20&m=693771276&s=170667a&w=0&h=tZepaixdgkK8Qx5qeeSaLQ5fy8YYxk5-1gtvLzGe1G0=" alt="Photo of a Shiba Inu">
-        </div>
-        <mat-card-content>
+        <div> <!--DATOS INGRESO-->
+          <mat-form-field appearance="fill">
+            <mat-label>usuario</mat-label>
+                <input formControlName="userNameCtrl" name="userName" ngModel required  matInput placeholder="Placeholder">
+                <mat-icon matSuffix>account_circle</mat-icon>            
+            </mat-form-field>                      
+        
+            <mat-form-field appearance="fill">
+                <mat-label>password</mat-label>
+                <input formControlName="passwordCtrl" name="password" ngModel required matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
 
-
-          <div class="box">
-            <form class="item" #f="ngForm" (ngSubmit)="f.form.valid && addNewUser(f)">
-              <div>
-                <mat-form-field appearance="fill">
-                  <mat-label>usuario</mat-label>
-                      <input name="userName" ngModel required  matInput placeholder="Placeholder">
-                      <mat-icon matSuffix>account_circle</mat-icon>
-                      <!--
-                      <mat-hint>Bienvenido</mat-hint>
-                      -->
-                  </mat-form-field>                      
-              
-                  <mat-form-field appearance="fill">
-                      <mat-label>password</mat-label>
-                      <input name="password" ngModel required matInput [type]="hide ? 'password' : 'text'">
-                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                      </button>
-                  </mat-form-field>
-
-              </div>
-
-
-              <mat-form-field appearance="fill">
-                <mat-label>Nombre</mat-label>
-                    <input name="name" ngModel required  matInput placeholder="Nombre">
-              </mat-form-field>  
-              <mat-form-field appearance="fill">
-                <mat-label>Apellido</mat-label>
-                    <input name="lastName" ngModel required  matInput placeholder="Apellido">
-              </mat-form-field>  
-
-              <mat-form-field appearance="fill">
-                <mat-label>Correo</mat-label>
-                    <input name="email" ngModel email required  matInput placeholder="Correo">
-              </mat-form-field>  
-
-              <mat-form-field appearance="fill">
-                <mat-label>Teléfono</mat-label>
-                    <input name="phone" ngModel required  matInput placeholder="Teléfono">
-              </mat-form-field>  
-
-              <mat-form-field appearance="fill">
-                <mat-label>Dni</mat-label>
-                    <input name="dni" ngModel required  matInput placeholder="Dni">
-              </mat-form-field>  
-
-              <mat-form-field appearance="fill">
-                <mat-label>Tipo de usuario</mat-label>
-                <mat-select [(ngModel)]="selectedRole" name="role">
-                  <mat-option [value]="role" *ngFor="let role of rolesList">
-                    {{role.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              
-
-
-                  <p>
-                    <button type="submit" mat-stroked-button color="primary">Agregar Usuario</button>
-                  </p>          
-            </form>          
+            <mat-form-field appearance="fill">
+              <mat-label>Tipo de usuario</mat-label>
+              <mat-select formControlName="roleCtrl" [(ngModel)]="selectedRole" name="role" >
+                <mat-option [value]="role" *ngFor="let role of rolesList">
+                  {{role.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>   
         </div>
 
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
 
-        </mat-card-content>
-    </mat-card>
+      </form>
+    </mat-step>
 
-  </div>
+    <!--STEP 2-->
+    <mat-step [stepControl]="personalFormGroup" [editable]="isEditable">
+      <form [formGroup]="personalFormGroup">
+        <ng-template matStepLabel>Datos personales</ng-template>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+              <input formControlName="nameCtrl" name="name" ngModel required  matInput placeholder="Nombre">
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+              <input formControlName="lastNameCtrl" name="lastName" ngModel required  matInput placeholder="Apellido">
+        </mat-form-field>  
+
+        <mat-form-field appearance="fill">
+          <mat-label>Dni</mat-label>
+              <input formControlName="dniCtrl" name="dni" ngModel required  matInput placeholder="Dni">
+        </mat-form-field>  
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--STEP 3-->
+    <mat-step [stepControl]="contactFormGroup" [editable]="isEditable">
+      <form [formGroup]="contactFormGroup">
+        <ng-template matStepLabel>Datos de contacto</ng-template>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Correo</mat-label>
+              <input formControlName="emailCtrl" name="email" ngModel email required  matInput placeholder="Correo">
+        </mat-form-field>  
+
+        <mat-form-field appearance="fill">
+          <mat-label>Teléfono</mat-label>
+              <input formControlName="phoneCtrl" name="phone" ngModel required  matInput placeholder="Teléfono">
+        </mat-form-field>  
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>  
+
+    <!--FINAL STEP-->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="resumen">
+        <p>usuario {{loginFormGroup.value.userNameCtrl}}</p>
+        <p>nombre {{personalFormGroup.value.nameCtrl}}</p>
+        <p>apellido {{personalFormGroup.value.lastNameCtrl}}</p>
+        <p>dni {{personalFormGroup.value.dniCtrl}}</p>
+        <p>email {{contactFormGroup.value.emailCtrl}}</p>
+        <p>teléfono {{contactFormGroup.value.phoneCtrl}}</p>
+        
+      </div>
+      <p>You are now done.</p>
+        <button (click) = "addNewUser()" type="submit" mat-stroked-button color="primary">Confirmar</button>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>

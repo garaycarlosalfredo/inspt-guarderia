@@ -12,7 +12,10 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select';
+import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -28,7 +31,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   exports:[
     MatSliderModule,
@@ -41,7 +47,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class AngularMaterialModule { }

@@ -26,6 +26,7 @@ import { PartnerToolBarComponent } from './components/toolbar/partner-tool-bar/p
 import { AddUserFormComponent } from './components/user/administrador/add-user-form/add-user-form.component';
 import {MatSelectModule} from '@angular/material/select';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -2,7 +2,14 @@
 [name] ="usuarioActual.name"
 ></app-admin-tool-bar>
 
-<app-add-user-form></app-add-user-form>
+<div class="example-button-row">
+    <button (click)="userChangeStatus(1)" mat-raised-button color="primary" >Agregar un nuevo usuario</button>
+</div>
+<div>
+    <app-add-user-form
+    (statusOut) = "returnStatus($event)"
+    *ngIf = "actualUserStatus == 'addUser';"></app-add-user-form>
+</div>
 
 <p>administrador works!</p>
 <p>userName : {{usuarioActual?.userName}}</p>

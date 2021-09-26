@@ -16,7 +16,6 @@ export class AuthService{
     currentUser !: Usuario;
     urlAuth = environment.BASE_URL + "/auth/sign-in";
     urlCurrentUser = environment.BASE_URL + "/auth/me";    
-    urlAuthSignUp = environment.BASE_URL + "/auth/sign-up";
 
     constructor(private httpClient : HttpClient,
                 private router : Router

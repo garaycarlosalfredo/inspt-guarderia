@@ -1,3 +1,4 @@
+import { Usuario } from './../../../models/usuario';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Role } from 'src/app/models/role';
@@ -18,23 +19,24 @@ export class AdminService {
 
     signUp(userName: String, 
           password: String,
+          role : Role,
           name : String,
           lastName : String,
-          email : String,
-          phone : String,
           dni : Number,
-          role : Role ){
+          email : String,
+          phone : String ){
 
       const AuthenticationRequest = {userName,password,name,lastName,email,phone,dni,role}
 
-      this.httpClient.post(`${this.urlAuthSignUp}`,AuthenticationRequest).subscribe(            
+      return this.httpClient.post<Usuario>(`${this.urlAuthSignUp}`,AuthenticationRequest) /*.subscribe(            
           res=> { 
-              console.log("Agregado exitosamente") 
+             console.log("OK")
           },
           error=>{
               console.log(error);        
           }                
-      )
+      )*/
+      
   }
 
    getRolesList(){   
