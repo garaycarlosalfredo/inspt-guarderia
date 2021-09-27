@@ -12,7 +12,15 @@
       </mat-toolbar-row>
   
       <mat-toolbar-row>
-        <span>Second Line</span>
+        <div class="menu-user">
+          <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onStatusChange(1)">Agregar un nuevo usuario</button>
+            <button mat-menu-item>Modificar un usuario</button>
+          </mat-menu>
+        </div>
+
+        
         <span class="example-spacer"></span>
         <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
           <mat-icon>favorite</mat-icon>

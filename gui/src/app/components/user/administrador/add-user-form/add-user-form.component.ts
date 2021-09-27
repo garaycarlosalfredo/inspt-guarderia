@@ -17,7 +17,7 @@ export class AddUserFormComponent implements OnInit {
   loginFormGroup!: FormGroup;
   personalFormGroup!: FormGroup;
   contactFormGroup !: FormGroup;
-  isEditable = false;
+  isEditable = true;
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';

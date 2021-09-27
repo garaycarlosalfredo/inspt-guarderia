@@ -14,8 +14,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -34,7 +36,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatGridListModule,
+    MatMenuModule
   ],
   exports:[
     MatSliderModule,
@@ -50,7 +54,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatGridListModule,
+    MatMenuModule
   ]
 })
 export class AngularMaterialModule { }

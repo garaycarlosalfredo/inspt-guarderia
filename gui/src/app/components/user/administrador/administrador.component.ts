@@ -23,11 +23,8 @@ export class AdministradorComponent implements OnInit {
       "addUser"
     ];
 
-    this.actualUserStatus = this.userStatusList[0]; 
+    this.actualUserStatus = this.userStatusList[0];   
 
-  
-
-    console.log(this.actualUserStatus)
     this.authService.getActualUser().subscribe(res => {
       this.usuarioActual = res
     });        

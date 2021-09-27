@@ -1,21 +1,55 @@
 <app-admin-tool-bar
+(statusOut) = "returnStatus($event)"
 [name] ="usuarioActual.name"
+[role] = "usuarioActual.role"
 ></app-admin-tool-bar>
 
+
+<mat-card>
+    <div class="container">
+        <div class="user-functions">
+            <div class="example-button-row">
+                <button  class="menu-actions-button"  
+                *ngIf = "actualUserStatus == 'home';"
+                (click)="userChangeStatus(1)" mat-raised-button color="primary" >Agregar un nuevo usuario</button>
+
+                <button  class="menu-actions-button" 
+                *ngIf = "actualUserStatus == 'home';"
+                (click)="userChangeStatus(1)" mat-raised-button color="primary" >Modificar un usuario</button>
+            </div>
+        </div>
+    </div>
+    <div class="car-functions">
+        <button  class="menu-actions-button"  
+        *ngIf = "actualUserStatus == 'home';"
+        (click)="userChangeStatus(1)" mat-raised-button color="primary" >Agregar un nuevo auto</button>
+    </div>
+</mat-card>
+
+
+
 <div class="example-button-row">
-    <button (click)="userChangeStatus(1)" mat-raised-button color="primary" >Agregar un nuevo usuario</button>
-</div>
-<div>
-    <app-add-user-form
-    (statusOut) = "returnStatus($event)"
-    *ngIf = "actualUserStatus == 'addUser';"></app-add-user-form>
+    <button    
+    *ngIf = "actualUserStatus != 'home';"
+    (click)="userChangeStatus(0)" mat-raised-button color="primary" >Volver</button>
 </div>
 
-<p>administrador works!</p>
-<p>userName : {{usuarioActual?.userName}}</p>
-<p>dani : {{usuarioActual?.dni}}</p>
-<p>email : {{usuarioActual?.email}}</p>
-<p>name : {{usuarioActual?.name}}</p>
-<p>lastName : {{usuarioActual?.lastName}}</p>
-<p>Phone : {{usuarioActual?.phone}}</p>
-<p>Role : {{usuarioActual?.role}}</p>
+<div class="containerForm">
+    <app-add-user-form
+        (statusOut) = "returnStatus($event)"
+        *ngIf = "actualUserStatus == 'addUser';">
+    </app-add-user-form>
+</div>
+<!--
+<div>
+    <p>administrador works!</p>
+    <p>userName : {{usuarioActual?.userName}}</p>
+    <p>dani : {{usuarioActual?.dni}}</p>
+    <p>email : {{usuarioActual?.email}}</p>
+    <p>name : {{usuarioActual?.name}}</p>
+    <p>lastName : {{usuarioActual?.lastName}}</p>
+    <p>Phone : {{usuarioActual?.phone}}</p>
+    <p>Role : {{usuarioActual?.role}}</p>
+</div>
+
+-->
